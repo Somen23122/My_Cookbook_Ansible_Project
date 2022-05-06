@@ -1,0 +1,28 @@
+# Copy App Source Code
+- name: Copy App source code
+  copy:
+    src: app/init.js
+    dest: "{{app.deploy_dir}}/init.js"
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - update
+
+# Installing mongodb npm package.
+- name: Installing mongodb npm package
+  npm:
+    name: mongodb
+    version: '3.6.5'
+    path: "{{app.nodejs.module_dir}}"
+  tags:
+    - update
+
+# Installing express npm package.
+- name: Installing express npm package
+  npm:
+    name: express
+    version: '4.17.1'
+    path: "{{app.nodejs.module_dir}}"
+  tags:
+    - update

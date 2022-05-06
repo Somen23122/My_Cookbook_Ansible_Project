@@ -1,0 +1,10 @@
+# Configure Supervisor for Node.js App.
+- name: Configure supervisor for Node.js app
+  template:
+    src: supervisor.ini.j2
+    dest: /etc/supervisord.d/app.ini
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - configure

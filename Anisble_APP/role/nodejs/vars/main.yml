@@ -1,0 +1,9 @@
+# Role variables.
+app:
+  environment: dev
+  deploy_dir: /opt/app/source
+  log_dir: /opt/app/log
+  nodejs:
+    version: v14.16.0
+    module_dir: /opt/app
+    exec_dir: /usr/local/lib/nodejs

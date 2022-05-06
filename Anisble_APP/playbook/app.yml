@@ -1,0 +1,7 @@
+- hosts: project
+  roles:
+  - { role: /opt/kickstart-ansible/project/role/nodejs }
+  environment:
+    PATH: "{{app.nodejs.exec_dir}}/node-{{app.nodejs.version}}-linux-x64/bin:{{ansible_env.PATH}}"
+    NODE_PATH: "{{app.nodejs.module_dir}}/node_modules"
+

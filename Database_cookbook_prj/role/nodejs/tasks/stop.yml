@@ -1,0 +1,8 @@
+# Stop Node.js App.
+- name: Stop Node.js App
+  command: supervisorctl {{item}} app
+  loop:
+    - stop
+    - remove
+  tags:
+    - stop

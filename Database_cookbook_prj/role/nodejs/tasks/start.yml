@@ -1,0 +1,8 @@
+# Start Node.js App.
+- name: Start Node.js App
+  command: supervisorctl {{item}} app
+  loop:
+    - update
+    - start
+  tags:
+    - start

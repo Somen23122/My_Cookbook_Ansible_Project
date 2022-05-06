@@ -1,0 +1,42 @@
+# Install system packages.
+- name: Install system packages
+  yum:
+    name:
+      - wget
+      - vim
+      - procps
+      - tar
+      - gzip
+      - xz
+    state: present
+  tags:
+    - setup
+
+# Create Node.js directories.
+- name: Create Node.js directories
+  file:
+    path: "{{item}}"
+    state: directory
+    owner: root
+    group: root
+    recurse: true
+    mode: 0700
+  loop:
+    - "{{app.nodejs.module_dir}}"
+    - "{{app.nodejs.exec_dir}}"
+    - "{{app.deploy_dir}}"
+    - "{{app.log_dir}}"
+  tags:
+    - setup
+
+# Download and extract Node.js.
+- name: Download and extract Node.js
+  unarchive:
+    src: https://nodejs.org/dist/{{app.nodejs.version}}/node-{{app.nodejs.version}}-linux-x64.tar.xz
+    dest: "{{app.nodejs.exec_dir}}"
+    owner: root
+    group: root
+    remote_src: yes
+    creates: "{{app.nodejs.exec_dir}}/node-{{app.nodejs.version}}-linux-x64"
+  tags:
+    - setup
